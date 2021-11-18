@@ -83,6 +83,7 @@ print('Play\nNo need to put 0 before numbers ;) ')
 show_rows()
 while (score < size):
     #Taking user input
+    Android.ttsSpeak('Enter the number to cut')
     temp = str(user_inp('The number to cut: '))
     inputs.append(temp)
     tl = len(temp)
@@ -133,5 +134,5 @@ if score >= size:
 '''Version 1.2 changes:
 1. Some aesthetic changes.
 2. Changed things to definitions as much as possible for impoving readability.'''
-'''Version 1.2 changes:
+'''Version 1.3 changes:
 1. Added voice assistance supported in android versions of python(QPython3L).'''
