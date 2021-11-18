@@ -130,6 +130,7 @@ if score >= size:
     inputs.insert(0, 'These were the values cut during the whole session')
     for i in range(inputs):
         Android.ttsSpeak(inputs[i])
+        sleep(5)
     
 '''Version 1.2 changes:
 1. Some aesthetic changes.
