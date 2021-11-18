@@ -71,7 +71,6 @@ score = 0
 #Taking grid size
 print('Enter the size of the grid : ')
 Android.ttsSpeak('Enter the size of the grid')
-sleep(5)
 size = user_inp('')
 
 grid = size ** 2
@@ -126,7 +125,7 @@ while (score < size):
 if score >= size:
     print('You won!')
     print('These were the values cut during the whole session : ', inputs)
-    inputs.append('These were the values cut during the whole session')
+    inputs.insert(0, 'These were the values cut during the whole session')
     for i in range(inputs):
         Android.ttsSpeak(inputs[i])
     
