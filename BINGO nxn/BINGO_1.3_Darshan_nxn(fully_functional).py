@@ -1,4 +1,5 @@
 import random
+from time import sleep
 from androidhelper import Android
 Android = Android()
 
@@ -71,6 +72,7 @@ score = 0
 #Taking grid size
 print('Enter the size of the grid : ')
 Android.ttsSpeak('Enter the size of the grid')
+sleep(5)
 size = user_inp('')
 
 grid = size ** 2
