@@ -1,5 +1,4 @@
 import random
-from time import sleep
 from androidhelper import Android
 Android = Android()
 
@@ -72,7 +71,6 @@ score = 0
 #Taking grid size
 print('Enter the size of the grid : ')
 Android.ttsSpeak('Enter the size of the grid')
-sleep(5)
 size = user_inp('')
 
 grid = size ** 2
@@ -126,11 +124,11 @@ while (score < size):
             
 if score >= size:
     print('You won!')
+    Android.ttsSpeak('You won')
     print('These were the values cut during the whole session : ', inputs)
     inputs.insert(0, 'These were the values cut during the whole session')
     for i in range(len(inputs)):
         Android.ttsSpeak(inputs[i])
-        sleep(3)
     
 '''Version 1.2 changes:
 1. Some aesthetic changes.
