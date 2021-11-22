@@ -1,4 +1,5 @@
 import random
+# Copyright (C) 2012, Hariharan Srinath, Robbie Matthews
 from androidhelper import Android
 Android = Android()
 
