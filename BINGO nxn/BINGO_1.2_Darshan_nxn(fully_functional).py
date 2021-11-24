@@ -4,7 +4,10 @@ import random
 def user_inp(string):
     try:
         size = int(input(string))
-        return size
+        if size > 0:
+            return size
+        else:
+            return user_inp(string)
     except ValueError:
         print('Try again! Put an integral value. ')
         return user_inp(string)
