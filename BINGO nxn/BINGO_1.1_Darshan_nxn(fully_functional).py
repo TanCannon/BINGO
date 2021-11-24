@@ -102,17 +102,17 @@ while (score < size):
                 if cond2 == True:
                     score += 1
                     vert.append(temp3)
-    # Still room for impovement in checking of diagonal, task for reader ;),
-        if md == 0:
-            cond3 = cond_equal_diar(0)
-            if cond3 == True:
-                score += 1
-                md += 1
-        if od == 0:
-            cond4 = cond_equal_dial(size-1)
-            if cond4 == True:
-                score += 1
-                od += 1
+  
+            if md == 0:
+                cond3 = cond_equal_diar(0)
+                if cond3 == True:
+                    score += 1
+                    md += 1
+            if od == 0:
+                cond4 = cond_equal_dial(size-1)
+                if cond4 == True:
+                    score += 1
+                    od += 1
     print('Score: ', score)
             
 if score >= size:
