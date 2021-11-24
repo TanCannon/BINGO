@@ -97,11 +97,11 @@ while (score < size):
                 if len(cond1) == 1:
                     score += 1
                     horz.append(i)
-                if temp not in vert:
-                    cond2 = cond_equal_col(size-1, temp3)
-                    if cond2 == True:
-                        score += 1
-                        vert.append(i)
+            if temp3 not in vert:
+                cond2 = cond_equal_col(size-1, temp3)
+                if cond2 == True:
+                    score += 1
+                    vert.append(temp3)
     # Still room for impovement in checking of diagonal, task for reader ;),
         if md == 0:
             cond3 = cond_equal_diar(0)
