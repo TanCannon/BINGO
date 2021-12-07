@@ -3,164 +3,159 @@ import random
 #from androidhelper import Android
 #Android = Android()
 
-#Initialising setup of grid by taking user input
-def user_inp(string):
+def user_inp_num(string):
     try:
         size = int(input(string))
         if size > 0:
             return size
         else:
-            return user_inp(string)
+            return user_inp_num(string)
     except ValueError:
         print('Try again! Put an integral value. ')
-        return user_inp(string)
+        return user_inp_num(string)
 
-def conv_str(string, gridn):
-    if len(str(string)) == gridn:
+def conv_str(string, grid_str_len):
+    if len(str(string)) == grid_str_len:
         return str(string)
     else:
-        return ('0'*(gridn-len(str(string)))+str(string))
+        return ('0'*(grid_str_len-len(str(string)))+str(string))
 
-#Making grid main rows with ugly brakets and inverted commas
-def make_grid(size, grid, gridn, temp1):
-    #Step 1: All the elements
-    temp2 = [conv_str(i, gridn) for i in range (1, grid+1)]
-    random.shuffle(temp2)
-    #Step 2: Element in different sets
+def make_grid(size, grid_elm, grid_str_len, grid):
+    temp = [conv_str(i, grid_str_len) for i in range (1, grid_elm+1)]
+    random.shuffle(temp)
     count = 0
     for i in range(size):
         for j in range(count*size, (count+1)*size):
-            temp1[i].append(temp2[j])
+            grid[i].append(temp[j])
         count += 1
-    return temp1
+    return grid
 
-#For showing the grid without ugly brackets and inverted commas
-def show_rows(k, message = None):
+def show_grid(k, message = None):
     if message:
         print(str(message))
     for i in range(size):
         for j in range(size):
-            print(players[k].temp1[i][j], end = '  ')
+            print(players[k].grid[i][j], end = '  ')
         print()
 
-#For checking column
-def cond_equal_col(num1, num2, l):
-    if (num1 > 1 and (players[l].temp1[num1][num2] == players[l].temp1[num1-1][num2])):
-        return cond_equal_col(num1-1, num2, l)
-    elif ((num1 == 1 and players[l].temp1[1][num2] == players[l].temp1[0][num2]) or num1 == 0):
+def check_column(num1, num2, l):
+    if ((num1 > 1) and (players[l].grid[num1][num2] == players[l].grid[num1-1][num2])):
+        return check_column(num1-1, num2, l)
+    elif (((num1 == 1) and (players[l].grid[1][num2] == players[l].grid[0][num2])) or (num1 == 0)):
         return True
     else:
         return False
 
-#For checking main diagonal
-def cond_equal_diar(i, l):
+def check_main_diagonal(i, l):
     if i < size-1:
-        if players[l].temp1[i][i] == players[l].temp1[i+1][i+1]:
-            return cond_equal_diar(i+1, l)
+        if players[l].grid[i][i] == players[l].grid[i+1][i+1]:
+            return check_main_diagonal(i+1, l)
         else:
             return False
     elif i == size-1:
         return True
 
-#For cheecking the other diagonal
-def cond_equal_dial(i, l):
+def check_other_diagonal(i, l):
     if i > 0:
-        if players[l].temp1[(size-1)-i][i] == players[l].temp1[(size-1)-(i-1)][i-1]:
-            return cond_equal_dial(i-1, l)
+        if players[l].grid[(size-1)-i][i] == players[l].grid[(size-1)-(i-1)][i-1]:
+            return check_other_diagonal(i-1, l)
         else:
             return False
     elif i == 0:
         return True
 
-def user_inp_cut(grid, gridn, inputs):
-        temp = user_inp('The number to cut: ')
-        if (temp > grid) or (temp <= 0):#Bracket is necessary around each condition otherwise noerror will incur, but code will not work(took me hours to figure this one out)
+def user_inp_num_cut(grid_elm, grid_str_len, inputs):
+        temp = user_inp_num('The number to cut: ')
+        if (temp > grid_elm):
             print('Enter a number from the grid')
-            return user_inp_cut(grid, gridn, inputs)
+            return user_inp_num_cut(grid_elm, grid_str_len, inputs)
         else:
             temp = str(temp)
             inputs.append(temp)
-            temp = conv_str(temp, gridn)
+            temp = conv_str(temp, grid_str_len)
             return temp
 
 
-# To not give score to the one already given
 class Player:
-    def __init__(self, name, temp1=[], horz=[], vert=[], md=0, od=0, score=0):
-        self.temp1 = temp1
+    def __init__(self, name, grid=[], horz=[], vert=[], md=0, od=0, score=0):
+        self.grid = grid
         self.name = name
         self.horz = horz
         self.vert = vert
         self.md = md
         self.od = od
         self.score = score
-#Taking grid size
+
 print('Enter the size of the grid : ', end = '')
-#Android.ttsSpeak('Enter the size of the grid')
-size = user_inp('')
+size = user_inp_num('')
 
-grid = size ** 2
-gridn = len(str(grid))
+grid_elm = size ** 2
+grid_str_len = len(str(grid_elm))
 
-player_num = user_inp('Enter the number of players : ')
+player_num = user_inp_num('Enter the number of players : ')
 players = [Player(input('Enter the name of player : ')) for k in range(player_num)]
 for k in range(player_num):
-    players[k].temp1 = [[] for i in range (size)]
-    players[k].temp1 = make_grid(size, grid, gridn, players[k].temp1)
-
+    players[k].grid = [[] for i in range (size)]
+    players[k].grid = make_grid(size, grid_elm, grid_str_len, players[k].grid)
+    
 inputs = []
 game_over = False
 print('\nPlay\n')
 while(game_over == False):
     for k in range(player_num):
-        #For showing kth player
         print('\n',players[k].name,"'s turn\nNo need to put 0 before numbers ;) ")
-        show_rows(k, 'Grid of '+players[k].name+"'s right now : ")
-        temp = user_inp_cut(grid, gridn, inputs)
-        #Replacing the given number
+        show_grid(k, 'Grid of '+players[k].name+"'s right now : ")
+        temp1 = user_inp_num_cut(grid_elm, grid_str_len, inputs)
         for l in range(player_num):
             for i in range(size):
-                if temp in players[l].temp1[i]:
-                    temp3 = players[l].temp1[i].index(temp)
-                    players[l].temp1[i][temp3] = '0'*gridn
+                if temp1 in players[l].grid[i]:
+                    temp2 = players[l].grid[i].index(temp1)
+                    players[l].grid[i][temp2] = '0'*grid_str_len
                     
                     if i not in players[l].horz:
-                        cond1 = set(players[l].temp1[i])
-                        if cond1 == 1:
+                        if len(set(players[l].grid[i])) == 1:
                             players[l].score += 1
                             players[l].horz.append(i)
-                            print(players[l].name, i, cond1)                               #Main problem is here in this horz and 
-                                                                                                    #vert giving always 1 and horz both elements
-                    if temp3 not in players[l].vert:
-                        cond2 = cond_equal_col(size-1, temp3, l)
-                        if cond2 == True:
+                            
+                    if temp2 not in players[l].vert:
+                        if check_column(size-1, temp2, l) == True:
                             players[l].score += 1
-                            players[l].vert.append(temp3)
-                            print(players[l].name, i, temp3)
+                            players[l].vert.append(temp2)
                                   
                     if players[l].md == 0:
-                        cond3 = cond_equal_diar(0, l)
-                        if cond3 == True:
+                        if check_main_diagonal(0, l) == True:
                             players[l].score += 1
                             players[l].md += 1
                                   
                     if players[l].od == 0:
-                        cond4 = cond_equal_dial(size-1, l)
-                        if cond4 == True:
+
+                        if check_other_diagonal(size-1, l) == True:
                             players[l].score += 1
                             players[l].od += 1
+
+
+                    
+                    print(players[l].grid)
+                    print(players[l].horz)
+                    print(players[l].vert)
+                    print(check_column(size-1, temp2, l))
+                    print(players[l].md)
+                    print(players[l].od)
+                    print(players[l].score)
+
+
+                    
                     
             print('The score of', players[l].name, 'is', players[l].score)
             if players[l].score >= size:
                 game_over = True
-                
-        show_rows(k, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
+                    
+        show_grid(k, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
         if game_over == True:
             break
                 
 #Android.ttsSpeak('You won')
 print('These were the values cut during the whole session : ', inputs)
-        
 '''inputs.insert(0, 'These were the values cut during the whole session')
 for i in range(len(inputs)):
     Android.ttsSpeak(inputs[i])'''
