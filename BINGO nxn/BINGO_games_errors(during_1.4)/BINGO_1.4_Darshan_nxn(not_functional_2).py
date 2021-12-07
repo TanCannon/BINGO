@@ -1,6 +1,8 @@
 
 """
 GO TO THE LINE NO.128,129, 134,135 TO SEE THE ERROR
+error being changing mutable variables in a class instance changes its value in class along with all other class instance.
+
 
 MORE ON THIS HERE:
 1. https://stackoverflow.com/questions/2424451/compound-assignment-to-python-class-and-instance-variables
