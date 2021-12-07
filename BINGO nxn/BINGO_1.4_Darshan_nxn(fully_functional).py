@@ -1,3 +1,7 @@
+'''Not incorpoated the default limit of recursion and stacksize which might break with higher values of grid and players
+more information on
+1. https://stackoverflow.com/questions/3323001/what-is-the-maximum-recursion-depth-in-python-and-how-to-increase-it
+2. https://stackoverflow.com/questions/5061582/setting-stacksize-in-a-python-script'''
 import random
 
 def user_inp_num(string):
