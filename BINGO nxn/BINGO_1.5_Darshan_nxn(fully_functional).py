@@ -167,14 +167,14 @@ while(game_over is False):
                 game_over = True
                 print('congratulations,', players[l].name, 'won!')
                       
-        show_grid(k,grid_str_len_p1, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
+        show_grid(k,grid_str_len_p1, '\nAfter cutting', temp1, players[k].name, "'s grid : ")
         temp3 = input('Enter any key...')
         cls()
         
         for l in range(player_num):
             print('The score of', players[l].name, 'is', players[l].score)
             
-        if game_over == True:
+        if game_over is True:
             break
         
 print('These were the values cut during the whole session : ', inputs)
