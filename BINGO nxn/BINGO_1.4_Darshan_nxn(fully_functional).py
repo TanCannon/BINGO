@@ -93,14 +93,14 @@ class Player:
     def add_to_horz(self, value):
         if self.horz:
             self.horz.append(value)
-        elif self.horz == None:
+        elif self.horz is None:
             self.horz = []
             self.horz.append(value)
             
     def add_to_vert(self, value):
         if self.vert:
             self.vert.append(value)
-        elif self.vert == None:
+        elif self.vert is None:
             self.vert = []
             self.vert.append(value)
         
@@ -118,9 +118,9 @@ for k in range(player_num):
     
 game_over = False
 print('\nPlay\n')
-while(game_over == False):
+while(game_over is False):
     for k in range(player_num):
-        show_grid(k, 'Grid of '+players[k].name+"'s right now : ")
+        show_grid(k, '\nGrid of '+players[k].name+"'s right now : ")
         temp1 = user_inp_num_cut(grid_elm, grid_str_len, inputs)
         for l in range(player_num):
             for i in range(size):
@@ -128,23 +128,23 @@ while(game_over == False):
                     temp2 = players[l].grid[i].index(temp1)
                     players[l].grid[i][temp2] = (' '*(grid_str_len-1)+ 'X')
                     
-                    if ((players[l].horz == None) or (i not in players[l].horz)):
+                    if ((players[l].horz is None) or (i not in players[l].horz)):
                         if len(set(players[l].grid[i])) == 1:
                             players[l].score += 1
                             players[l].add_to_horz(i)
                             
-                    if ((players[l].vert == None) or (temp2 not in players[l].vert)):
-                        if check_column(size-1, temp2, l) == True:
+                    if ((players[l].vert is None) or (temp2 not in players[l].vert)):
+                        if check_column(size-1, temp2, l) is True:
                             players[l].score += 1
                             players[l].add_to_vert(temp2)
                                   
                     if players[l].md == 0:
-                        if check_main_diagonal(0, l) == True:
+                        if check_main_diagonal(0, l) is True:
                             players[l].score += 1
                             players[l].md += 1
                                   
                     if players[l].od == 0:
-                        if check_other_diagonal(size-1, l) == True:
+                        if check_other_diagonal(size-1, l) is True:
                             players[l].score += 1
                             players[l].od += 1
 
