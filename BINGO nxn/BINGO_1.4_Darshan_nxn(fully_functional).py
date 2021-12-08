@@ -3,6 +3,7 @@ more information on
 1. https://stackoverflow.com/questions/3323001/what-is-the-maximum-recursion-depth-in-python-and-how-to-increase-it
 2. https://stackoverflow.com/questions/5061582/setting-stacksize-in-a-python-script'''
 import random
+inputs = []
 
 def user_inp_num(string):
     try:
@@ -10,16 +11,18 @@ def user_inp_num(string):
         if size > 0:
             return size
         else:
+            print('Put a positive non-zero number. ')
             return user_inp_num(string)
     except ValueError:
         print('Try again! Put an integral value. ')
         return user_inp_num(string)
 
 def conv_str(string, grid_str_len):
-    if len(str(string)) == grid_str_len:
-        return str(string)
+    string = str(string)
+    if len(string) == grid_str_len:
+        return string
     else:
-        return (' '*(grid_str_len-len(str(string)))+str(string))
+        return (' '*(grid_str_len-len(str(string)))+ string)
 
 def make_grid(size, grid_elm, grid_str_len, grid):
     temp = [conv_str(i, grid_str_len) for i in range (1, grid_elm+1)]
@@ -36,7 +39,7 @@ def show_grid(k, message = None):
         print(str(message))
     for i in range(size):
         for j in range(size):
-            print(players[k].grid[i][j], end = '  ')
+            print(players[k].grid[i][j], end = ' ')
         print()
 
 def check_column(num1, num2, l):
@@ -66,15 +69,15 @@ def check_other_diagonal(i, l):
         return True
 
 def user_inp_num_cut(grid_elm, grid_str_len, inputs):
-        temp = user_inp_num('The number to cut: ')
-        if (temp > grid_elm):
-            print('Enter a number from the grid')
+        temp1 = user_inp_num('The number to cut: ')
+        temp2 = str(temp1)
+        if ((temp1 > grid_elm) or (temp2 in inputs)):
+            print('Enter a number from the given grid!')
             return user_inp_num_cut(grid_elm, grid_str_len, inputs)
         else:
-            temp = str(temp)
-            inputs.append(temp)
-            temp = conv_str(temp, grid_str_len)
-            return temp
+            inputs.append(temp2)
+            temp2 = conv_str(temp2, grid_str_len)
+            return temp2
 
 
 class Player:
@@ -113,7 +116,6 @@ for k in range(player_num):
     players[k].grid = [[] for i in range (size)]
     players[k].grid = make_grid(size, grid_elm, grid_str_len, players[k].grid)
     
-inputs = []
 game_over = False
 print('\nPlay\n')
 while(game_over == False):
@@ -167,4 +169,5 @@ print('These were the values cut during the whole session : ', inputs)
 1. Removed annoying voice assistance supported in android versions of python(QPython3L).
 2. Added multiplayer support.
 3. Changed annoying zeroes(0) to spaces( ).
+5. Added some bug fixes.
 4. Removed comments.'''
