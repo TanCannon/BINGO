@@ -167,11 +167,10 @@ while(game_over is False):
             if players[l].score >= size:
                 game_over = True
                 print('congratulations,', players[l].name, 'won!')
-        
-        temp3 = input('Enter any key...')
-        cls()
                     
         show_grid(k,grid_str_len_p1, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
+        temp3 = input('Enter any key...')
+        cls()
         if game_over == True:
             break
         
