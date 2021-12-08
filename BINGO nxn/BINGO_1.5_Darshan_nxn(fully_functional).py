@@ -169,8 +169,7 @@ while(game_over is False):
                 print('congratulations,', players[l].name, 'won!')
         
         temp3 = input('Enter any key...')
-        if ((temp3 == '') or temp3):
-            cls()
+        cls()
                     
         show_grid(k,grid_str_len_p1, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
         if game_over == True:
