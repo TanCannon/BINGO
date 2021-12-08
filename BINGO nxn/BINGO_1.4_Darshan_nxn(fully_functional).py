@@ -169,5 +169,5 @@ print('These were the values cut during the whole session : ', inputs)
 1. Removed annoying voice assistance supported in android versions of python(QPython3L).
 2. Added multiplayer support.
 3. Changed annoying zeroes(0) to spaces( ).
-5. Added some bug fixes.
-4. Removed comments.'''
+4. Added some bug fixes.
+5. Removed comments.'''
