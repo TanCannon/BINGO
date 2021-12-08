@@ -1,12 +1,15 @@
 
 """
 GO TO THE LINE NO.128,129, 134,135 TO SEE THE ERROR
-error being changing mutable variables in a class instance changes its value in class along with all other class instance.
+a)error being changing mutable variables in a class instance changes its value in class along with all other class instance.
 
+    MORE ON THIS HERE:
+    1. https://stackoverflow.com/questions/2424451/compound-assignment-to-python-class-and-instance-variables
+    2. https://stackoverflow.com/questions/2681243/how-should-i-declare-default-values-for-instance-variables-in-python
 
-MORE ON THIS HERE:
-1. https://stackoverflow.com/questions/2424451/compound-assignment-to-python-class-and-instance-variables
-2. https://stackoverflow.com/questions/2681243/how-should-i-declare-default-values-for-instance-variables-in-python
+b)using difference between '==' and 'is' keyword:
+    '==' IS USED TO CHECK THE VALUE OF THE THINGS IN THE TWO SIDES, E.G.,X == Y
+    'is' KEYWORD USED TO CHECK THE ID OF THE THINGS ON TWO SIDES, EQUIVALENT TO id(X)== id(Y), NOSTLY USED IN BOOLEAN VALUES CHECKING
 """
 
 
