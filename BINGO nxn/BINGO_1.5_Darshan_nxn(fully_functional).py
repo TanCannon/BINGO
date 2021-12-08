@@ -163,14 +163,17 @@ while(game_over is False):
                             players[l].score += 1
                             players[l].od += 1
 
-            print('The score of', players[l].name, 'is', players[l].score)
             if players[l].score >= size:
                 game_over = True
                 print('congratulations,', players[l].name, 'won!')
-                    
+                      
         show_grid(k,grid_str_len_p1, '\nAfter cutting the input, '+players[k].name+"'s grid : ")
         temp3 = input('Enter any key...')
         cls()
+        
+        for l in range(player_num):
+            print('The score of', players[l].name, 'is', players[l].score)
+            
         if game_over == True:
             break
         
@@ -190,4 +193,5 @@ print('These were the values cut during the whole session : ', inputs)
 5. Removed comments.'''
 '''Version 1.5 changes:
 1. Made the grid more decorative.
-2. Made the console to override itself during each players' turn.'''
+2. Made the console to override itself during each players' turn.
+3. Quality of life changes.'''
