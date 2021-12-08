@@ -3,18 +3,18 @@
 GO TO THE LINE NO.60,61, 63,64 TO SEE THE ERROR
 
 1. ALWAYS USE BRACKETS IN EVERY CONDITION BETWEEN 'AND' OR 'OR'
-2. ALSO IN TRY EXCEPT BLOCK, EXCEPT CANNOT BE EMPTY LIKE IN THIS EXAMPLE
+2. ALSO IN TRY EXCEPT BLOCK, ELSE CANNOT BE USED IN THIS EXAMPLE
     (I.E. DO NOT HOPE ALL THE EXCEPTIONS WILL BE HANDLED HERE!)
     ''
     def user_inp(string):
         try:
             size = int(input(string))
             return size
-        except:
+        else:
             print('Try again! Put an integral value. ')
             return user_inp(string)
     ''
-    THIS MUST HAVE SOME VALUE LIKE VALUEERROR OR SOMETHING.
+    THIS MUST HAVE SOME VALUE LIKE VALUEERROR OR SOMETHING WITH EXCEPT
 """
 
 
