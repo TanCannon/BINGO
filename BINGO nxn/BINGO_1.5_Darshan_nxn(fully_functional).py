@@ -120,10 +120,11 @@ cls = lambda: system('cls' if name in ('nt','dos') else 'clear')
         
 print('Enter the size of the grid : ', end = '')
 size = user_inp_num('')
-
+size_m1= size - 1
 grid_elm = size ** 2
 grid_str_len = len(str(grid_elm))
 grid_str_len_p1 = grid_str_len + 1
+grid_str_len_m1 = grid_str_len - 1
 
 player_num = user_inp_num('Enter the number of players : ')
 players = [Player(input('Enter the name of player : ')) for k in range(player_num)]
@@ -141,7 +142,7 @@ while(game_over is False):
             for i in range(size):
                 if temp1 in players[l].grid[i]:
                     temp2 = players[l].grid[i].index(temp1)
-                    players[l].grid[i][temp2] = (' '*(grid_str_len-1)+ 'X')
+                    players[l].grid[i][temp2] = (' '*(grid_str_len_m1)+ 'X')
                     
                     if ((players[l].horz is None) or (i not in players[l].horz)):
                         if len(set(players[l].grid[i])) == 1:
@@ -149,7 +150,7 @@ while(game_over is False):
                             players[l].add_to_horz(i)
                             
                     if ((players[l].vert is None) or (temp2 not in players[l].vert)):
-                        if check_column(size-1, temp2, l) is True:
+                        if check_column(size_m1, temp2, l) is True:
                             players[l].score += 1
                             players[l].add_to_vert(temp2)
                                   
@@ -159,7 +160,7 @@ while(game_over is False):
                             players[l].md += 1
                                   
                     if players[l].od == 0:
-                        if check_other_diagonal(size-1, l) is True:
+                        if check_other_diagonal(size_m1, l) is True:
                             players[l].score += 1
                             players[l].od += 1
 
@@ -195,3 +196,4 @@ print('These were the values cut during the whole session : ', inputs)
 1. Made the grid more decorative.
 2. Made the console to override itself during each players' turn.
 3. Quality of life changes.'''
+
