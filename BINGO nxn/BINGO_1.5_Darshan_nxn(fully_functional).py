@@ -167,7 +167,7 @@ while(game_over is False):
                 game_over = True
                 print('congratulations,', players[l].name, 'won!')
                       
-        show_grid(k, grid_str_len_p1, f"\nAfter cutting {temp1} {players[k].name} 's grid : ")
+        show_grid(k, grid_str_len_p1, f"\nAfter cutting {temp1} {players[k].name}'s grid : ")
         temp3 = input('Enter any key...')
         cls()
         
