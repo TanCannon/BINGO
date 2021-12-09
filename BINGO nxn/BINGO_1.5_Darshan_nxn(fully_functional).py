@@ -135,7 +135,7 @@ game_over = False
 print('\nPlay\n')
 while(game_over is False):
     for k in range(player_num):
-        show_grid(k,grid_str_len_p1, '\nGrid of '+players[k].name+"'s right now : ")
+        show_grid(k,grid_str_len_p1, f"\nGrid of {players[k].name}'s right now : ")
         temp1 = user_inp_num_cut(grid_elm, grid_str_len, inputs)
         for l in range(player_num):
             for i in range(size):
@@ -167,7 +167,7 @@ while(game_over is False):
                 game_over = True
                 print('congratulations,', players[l].name, 'won!')
                       
-        show_grid(k, grid_str_len_p1, f"\nAfter cutting {temp1} from {players[k].name}'s grid : ")
+        show_grid(k,grid_str_len_p1, f"\nAfter cutting {temp1} from {players[k].name}'s grid : ")
         temp3 = input('Enter any key...')
         cls()
         
