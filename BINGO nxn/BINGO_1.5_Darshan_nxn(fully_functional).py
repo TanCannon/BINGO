@@ -63,17 +63,17 @@ def check_column(num1, num2, l):
         return False
 
 def check_main_diagonal(i, l):
-    if i < size-1:
+    if i < size_m1:
         if players[l].grid[i][i] == players[l].grid[i+1][i+1]:
             return check_main_diagonal(i+1, l)
         else:
             return False
-    elif i == size-1:
+    elif i == size_m1:
         return True
 
 def check_other_diagonal(i, l):
     if i > 0:
-        if players[l].grid[(size-1)-i][i] == players[l].grid[(size-1)-(i-1)][i-1]:
+        if players[l].grid[(size_m1)-i][i] == players[l].grid[(size_m1)-(i-1)][i-1]:
             return check_other_diagonal(i-1, l)
         else:
             return False
@@ -195,5 +195,5 @@ print('These were the values cut during the whole session : ', inputs)
 '''Version 1.5 changes:
 1. Made the grid more decorative.
 2. Made the console to override itself during each players' turn.
-3. Quality of life changes.'''
-
+3. Quality of life changes.
+4. Optimized program.'''
