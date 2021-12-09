@@ -10,6 +10,17 @@ a)error being changing mutable variables in a class instance changes its value i
 b)using difference between '==' and 'is' keyword:
     '==' IS USED TO CHECK THE VALUE OF THE THINGS IN THE TWO SIDES, E.G.,X == Y
     'is' KEYWORD USED TO CHECK THE ID OF THE THINGS ON TWO SIDES, EQUIVALENT TO id(X)== id(Y), NOSTLY USED IN BOOLEAN VALUES CHECKING
+
+c)problem with using default value of a variable while defining a function
+    E.G.    def append(a, l=[]):
+                l.append(a)
+                return l
+            a = append(10)
+        #>>>a = [10]#AS INTENDED
+        b = append(20)
+        #>>>a = [10,20]#NOT INTENDED
+    THIS HAPPENS BECAUSE DEFAULT VALUE ARE MADE NOT WHEN THE FUNCTION CALL BUT WHEN THE FUNCTION IS DEFINED.
+    
 """
 
 
